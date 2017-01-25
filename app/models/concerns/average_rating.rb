@@ -1,6 +1,6 @@
 
 module AverageRating
-
+  extend ActiveSupport::Concern
   def average_rating()
     if ratings.empty?
       return 0.0
