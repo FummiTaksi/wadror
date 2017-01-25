@@ -12,6 +12,16 @@
 <th>Number of beers <%= @brewery.beers.count%></th>
 </p>
 
+    <% if @brewery.ratings.size == 0 %>
+      Brewery has not been rated yet!
+    <% else %>
+     Brewery has <%= pluralize(@brewery.ratings.size, 'rating')%>, average <%= @brewery.average_rating.round(2) %>
+    <% end %>
+
+
+<h2>
+  Beers:
+</h2>
 <p>
   <% @brewery.beers.each do |beer| %>
       <%= link_to beer.name , beer%>
