@@ -14,5 +14,12 @@
   <% end %>
 </ul>
 
+<strong> Beer Clubs:</strong>
+<ul>
+  <% @user.beer_clubs.each do |beerclub| %>
+  <li> <%= link_to beerclub,beerclub %></li>
+  <% end %>
+</ul>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
