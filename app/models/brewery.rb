@@ -4,8 +4,7 @@ class Brewery < ActiveRecord::Base
   has_many :beers, dependent: :destroy
   has_many :ratings, through: :beers
   validates :name, length: {minimum: 1}
-  validates :year, numericality: {greater_than_or_equal_to: 1042,
-                                  less_than_or_equal_to: 2017}
+  validate :year_must_be_between_1042_and_present
 
   def print_report
     puts name
@@ -23,6 +22,12 @@ class Brewery < ActiveRecord::Base
       return 0.0
     end
     ratings.inject(0.0) {|summa,rating| summa + rating.score} / (1.0 * ratings.size)
+  end
+
+  def year_must_be_between_1042_and_present
+    if year < 1042 or year > Time.now.year
+      errors.add(:year_must_be_between_1042_and_present,",try again plz :)")
+    end
   end
 
 end
