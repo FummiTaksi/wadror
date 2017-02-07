@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :username, uniqueness: true,
                         length: { in: 3..30 }
+  validates :password, length: { minimum: 4 }
   has_many :ratings, dependent: :destroy
   has_many :beers, through: :ratings
   has_many :beer_clubs, through: :memberships
@@ -14,10 +15,15 @@ class User < ActiveRecord::Base
   end
 
   def password_is_correct
-    if password.length < 4 or  !( password =~ /\d/) or password == password.downcase
-         errors.add(:password_is_correct, "Password has to be at least 4 digits long, contain one upper case letter
+    if !( password =~ /\d/) or password == password.downcase
+         errors.add(:password_is_correct, "Password must contain one upper case letter
                                             and one number!")
     end
+  end
+
+  def favorite_beer
+     return nil if ratings.empty?
+     ratings.order(score: :desc).limit(1).first.beer
   end
 
 

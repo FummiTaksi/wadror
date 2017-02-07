@@ -48,6 +48,7 @@ group :development, :test do
   gem 'byebug'
   gem 'pry-rails'
   gem 'better_errors'
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :production do
@@ -55,6 +56,9 @@ group :production do
   gem 'rails_12factor'
 end
 
+group :test do
+  gem 'factory_girl_rails'
+end
 ruby '2.3.0'
 
 

@@ -5,6 +5,7 @@ class Beer < ActiveRecord::Base
   has_many :ratings, dependent: :destroy
   has_many :raters, -> { uniq }, through: :ratings, source: :user
   validates :name, length: {minimum: 1}
+  validates :style, presence: true
 
   def average_rating
     1.0 * ratings.inject(0.0){|summa,rating| summa + rating.score} /ratings.size
