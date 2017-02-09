@@ -1,6 +1,7 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
   before_action :set_breweries_and_styles_for_template, only: [:new,:edit,:destroy]
+  before_action :ensure_that_signed_in, except: [:index, :show]
   # GET /beers
   # GET /beers.json
   def index
@@ -16,11 +17,12 @@ class BeersController < ApplicationController
   # GET /beers/new
   def new
     @beer = Beer.new
+    set_breweries_and_styles_for_template
   end
 
   # GET /beers/1/edit
   def edit
-
+     set_breweries_and_styles_for_template
   end
 
   # POST /beers
@@ -33,6 +35,7 @@ class BeersController < ApplicationController
         format.html { redirect_to beers_path, notice: 'Beer was successfully created.' }
         format.json { render :show, status: :created, location: @beer }
       else
+        set_breweries_and_styles_for_template
         format.html { render :new }
         format.json { render json: @beer.errors, status: :unprocessable_entity }
       end

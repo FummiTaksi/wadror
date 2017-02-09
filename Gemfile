@@ -49,6 +49,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-its'
 end
 
 group :production do
@@ -58,6 +59,9 @@ end
 
 group :test do
   gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'simplecov', require: false
 end
 ruby '2.3.0'
 

@@ -23,6 +23,9 @@
   <% end %>
 </ul>
 
+<p>
+  Favorite style: <%=@user.favorite_style %>
+</p>
 <strong> Beer Clubs:</strong>
 <ul>
   <% @user.beer_clubs.each do |beerclub| %>

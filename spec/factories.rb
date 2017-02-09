@@ -5,6 +5,12 @@ FactoryGirl.define do
     password_confirmation "Foobar1"
   end
 
+  factory :user2, class: User do
+    username "Jorma"
+    password "Jorma1"
+    password_confirmation "Jorma1"
+  end
+
   factory :rating do
     score 10
   end
@@ -22,5 +28,23 @@ FactoryGirl.define do
     name "anonymous"
     brewery
     style "Lager"
+  end
+
+  factory :beer2 ,class: Beer do
+    name "ok"
+    brewery
+    style "Weizen"
+  end
+
+  factory :beer3, class: Beer do
+    name "jees"
+    brewery
+    style "Pale Ale"
+  end
+
+  factory :beer4, class: Beer do
+    name "ipa"
+    brewery
+    style "IPA"
   end
 end
