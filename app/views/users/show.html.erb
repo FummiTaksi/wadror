@@ -12,7 +12,7 @@
   <% @user.ratings.each do |rating| %>
 
       <li>
-        <%= rating %>
+        <%= link_to rating.beer.name, rating.beer %> <%= rating.score %>
         <% if @user == current_user %>
             <%= rating %> <%= link_to 'delete', rating_path(rating.id), method: :delete,data: {confirm:'Are you sure?'} %>
         <% end %>
@@ -24,8 +24,14 @@
 </ul>
 
 <p>
-  Favorite style: <%=@user.favorite_style %>
+  Favorite style: <%=@user.favorite_style  if @user.favorite_style %>
 </p>
+
+<p>
+  Favorite brewery: <%=link_to  @user.favorite_brewery.name, @user.favorite_brewery if @user.favorite_brewery%>
+</p>
+
+
 <strong> Beer Clubs:</strong>
 <ul>
   <% @user.beer_clubs.each do |beerclub| %>

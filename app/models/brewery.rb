@@ -30,4 +30,8 @@ class Brewery < ActiveRecord::Base
     end
   end
 
+  def to_s
+    "#{name}, founded at #{year}"
+  end
+
 end

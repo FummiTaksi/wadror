@@ -89,6 +89,17 @@ RSpec.describe User, type: :model do
     it "has method for determining one" do
       expect(user).to respond_to(:favorite_brewery)
     end
+
+    it "is the one with the best average" do
+      brewery1 = FactoryGirl.create(:brewery)
+      beer = FactoryGirl.create(:beer, brewery: brewery1)
+      rate_beer beer, user, 1
+      rate_beer beer, user, 50
+      brewery2 = FactoryGirl.create(:brewery2)
+      beer2 = FactoryGirl.create(:beer, brewery: brewery2)
+      rate_beer(beer2,user,30)
+      expect(user.favorite_brewery).to eq(brewery2)
+    end
   end
   describe "with a proper password" do
     let(:user){ FactoryGirl.create(:user)}

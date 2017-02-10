@@ -28,17 +28,28 @@ class User < ActiveRecord::Base
 
   def favorite_style
     return nil if ratings.empty?
-
-
-
-     ratings.order(score: :desc).limit(1).first.beer.style
+    hash = Hash.new { [] }
+    ratings.each do |r|
+      hash[r.beer.style] += [r.score]
+    end
+    hash.keys.each do |avain|
+      hash[avain] = hash[avain].sum / hash[avain].size.to_f
+    end
+    hash.max_by{|k, v| v}.first
   end
 
 
 
   def favorite_brewery
-    return nil
+    return nil if ratings.empty?
+    hash = Hash.new{[]}
+    ratings.each do |r|
+      hash[r.beer.brewery] += [r.score]
+    end
+    hash.keys.each do |avain|
+      hash[avain] = hash[avain].sum / hash[avain].size.to_f
+    end
+    hash.max_by{|k, v| v}.first
   end
-
 
 end
