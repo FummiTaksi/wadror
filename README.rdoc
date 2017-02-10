@@ -2,4 +2,4 @@
 
 
 Linkki herokuun: http://fierce-beyond-87257.herokuapp.com/
-
+Linkki Travisiin: https://travis-ci.org/FummiTaksi/wadror
