@@ -12,10 +12,12 @@ Rails.application.routes.draw do
   get 'ratings', to: 'ratings#index'
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
+  get 'places', to: 'places#index'
 
   delete 'signout',to: 'sessions#destroy'
   post 'ratings', to: 'ratings#create'
   post 'memberships', to: 'memberships#create'
+  post 'places', to:'places#search'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
