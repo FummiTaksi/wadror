@@ -1,9 +1,7 @@
 class BeermappingApi
     def self.places_in(city)
       city = city.downcase
-      Rails.cache.fetch(city,expires_in 1.minutes) do
-        Competitor::API.fetch_places_in(city)
-      end
+      Rails.cache.fetch(city) { fetch_places_in(city) }
     end
 
     private
@@ -22,9 +20,10 @@ class BeermappingApi
       end
     end
 
-  def self.key
-    "dd3be700f05c183f8dd40f99a451d424"
-  end
+    def self.key
+      raise "APIKEY env variable not defined" if ENV['APIKEY'].nil?
+      ENV['APIKEY']
+    end
 
 
 end

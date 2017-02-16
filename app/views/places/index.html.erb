@@ -9,14 +9,19 @@
   <table>
     <thead>
       <% Place.rendered_fields.each do |f| %>
-        <td><%=f %></td>
+        <td><%=f%></td>
       <% end %>
     </thead>
 <% @places.each do |place| %>
+
       <tr>
     <% Place.rendered_fields.each do |f| %>
-          <td><%= place.send(f) %></td>
-        <% end %>
+            <% if place.send(f) == place.name%>
+                <td> <%= link_to place.name,place_path(place.id)%></td>
+                <% else %>
+          <td><%= place.send(f)%></td>
+                <% end %>
+      <% end %>
       </tr>
     <% end %>
   </table>

@@ -9,12 +9,17 @@ class MembershipsController < ApplicationController
     membership = Membership.new(membership_params)
     membership.user = current_user
     if membership.save
-      redirect_to membership.beer_club
+      redirect_to membership.beer_club,notice: "#{current_user}, welcome to the club!"
     else
       render :new
     end
 
+  end
 
+  def destroy
+    user = @membership.user
+    @membership.destroy
+    redirect_to user,notice: "Membership in #{beerclub} has ended"
   end
 
   private
