@@ -8,7 +8,7 @@ class MembershipsController < ApplicationController
   def create
     membership = Membership.new(membership_params)
     membership.user = current_user
-    if membership.save
+    if membership.save and membership.valid?
       redirect_to membership.beer_club,notice: "#{current_user}, welcome to the club!"
     else
       render :new
@@ -17,7 +17,9 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
+    @membership = Membership.find_by user_id: current_user.id
     user = @membership.user
+    beerclub = @membership.beer_club
     @membership.destroy
     redirect_to user,notice: "Membership in #{beerclub} has ended"
   end

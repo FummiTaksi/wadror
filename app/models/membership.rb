@@ -1,7 +1,7 @@
 class Membership < ActiveRecord::Base
  belongs_to :user
  belongs_to :beer_club
- validate :cant_join_to_a_club_where_user_is
+ #validate :cant_join_to_a_club_where_user_is
 
 
 

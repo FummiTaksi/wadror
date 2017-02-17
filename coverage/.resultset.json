@@ -331,7 +331,8 @@
         null,
         null,
         1,
-        null,
+        0,
+        0,
         null,
         null,
         null,
@@ -508,6 +509,7 @@
         null,
         1,
         1,
+        1,
         null,
         null,
         null,
@@ -522,7 +524,13 @@
       ],
       "/Users/omistaja/ratebeer/app/controllers/places_controller.rb": [
         1,
+        null,
         1,
+        null,
+        null,
+        null,
+        1,
+        null,
         null,
         null,
         1,
@@ -644,6 +652,8 @@
         0,
         0,
         0,
+        0,
+        0,
         0
       ],
       "/Users/omistaja/ratebeer/app/controllers/memberships_controller.rb": [
@@ -672,9 +682,14 @@
         0,
         0,
         0,
+        0,
+        0,
+        0,
+        0,
+        0,
         0
       ]
     },
-    "timestamp": 1487238086
+    "timestamp": 1487339855
   }
 }
