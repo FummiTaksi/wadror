@@ -80,9 +80,9 @@ describe "User" do
 
   def create_beer_with_rating(user, score)
     brewery = FactoryGirl.create(:brewery)
-    beer = FactoryGirl.create(:beer, brewery: brewery)
+    style = FactoryGirl.create(:style)
+    beer = FactoryGirl.create(:beer, brewery: brewery, style: style)
     FactoryGirl.create(:rating, score:score, beer:beer, user:user)
-    beer
   end
 
 

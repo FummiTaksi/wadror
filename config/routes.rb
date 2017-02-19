@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'signin', to: 'sessions#new'
   get 'places', to: 'places#index'
   get 'places/:id', to:'places#show'
+  get 'styles', to: 'styles#index'
 
   delete 'signout',to: 'sessions#destroy'
   post 'ratings', to: 'ratings#create'

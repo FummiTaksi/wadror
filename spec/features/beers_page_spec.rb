@@ -3,6 +3,7 @@ require 'rails_helper'
 include Helpers
 describe "Beers page" do
   let!(:user) { FactoryGirl.create :user }
+  let!(:style) {FactoryGirl.create :style}
 
   it "creates beer if name is valid" do
     sign_in(username:"Pekka", password:"Foobar1")

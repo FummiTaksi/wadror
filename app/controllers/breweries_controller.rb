@@ -70,6 +70,7 @@ class BreweriesController < ApplicationController
       @brewery = Brewery.find(params[:id])
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def brewery_params
       params.require(:brewery).permit(:name, :year)
