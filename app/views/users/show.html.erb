@@ -7,41 +7,68 @@
 
 <p> Has made <%= @user.ratings.count %> ratings,average <%= @user.average_rating %></p>
 
-<strong> Ratings: </strong>
-<ul>
-  <% @user.ratings.each do |rating| %>
-
-      <li>
-        <%= link_to rating.beer.name, rating.beer %> <%= rating.score %>
-        <% if @user == current_user %>
-            <%= rating %> <%= link_to 'delete', rating_path(rating.id), method: :delete,data: {confirm:'Are you sure?'} %>
-        <% end %>
-      </li>
-
-
-
-  <% end %>
-</ul>
-
 <p>
-  Favorite style: <%=@user.favorite_style  if @user.favorite_style %>
+  Favorite style: <%=link_to @user.favorite_style, @user.favorite_style  if @user.favorite_style %>
 </p>
 
 <p>
   Favorite brewery: <%=link_to  @user.favorite_brewery.name, @user.favorite_brewery if @user.favorite_brewery%>
 </p>
 
+<strong> Ratings: </strong>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Beer</th>
+    <th>Score</th>
+    <th>Delete</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+<tbody>
+  <% @user.ratings.each do |rating| %>
+      <tr>
+        <td><%=link_to rating.beer.name,rating.beer%></td>
+        <td> <%=rating.score%></td>
+        <% if @user == current_user %>
+        <td> <%= link_to 'delete',rating_path(rating.id),class: "btn btn-danger", method: :delete,data: {confirm:'Are you sure?'} %></td>
+        <% end %>
+      </tr>
+
+
+
+
+  <% end %>
+</tbody>
+</table>
 
 <strong> Beer Clubs:</strong>
-<ul>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>City</th>
+    <th>Founded at</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+  <tbody>
   <% @user.beer_clubs.each do |beerclub| %>
-  <li> <%= link_to beerclub,beerclub %></li>
-  <% end %>
-</ul>
+    <tr>
+        <td><%= link_to beerclub.name,beerclub %></td>
+        <td><%=beerclub.city%></td>
+        <td><%=beerclub.founded%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
 
 <% if current_user == @user %>
-    <%= link_to 'Edit', edit_user_path(@user) %> |
-    <td><%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%= link_to 'Change Password', edit_user_path(@user),class: "btn btn-primary" %>
+    <td><%= link_to 'Destroy user', @user, class: "btn btn-danger",method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
-
-<%= link_to 'Back', users_path %>
+<table></table>
+<%= link_to 'Back', users_path,class: "btn btn-primary" %>

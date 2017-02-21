@@ -35,7 +35,10 @@ gem 'httparty'
 # gem 'capistrano-rails', group: :development
 
 
-
+gem 'bootstrap-sass'
+group :development do
+  gem 'rails_layout'
+end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
