@@ -9,7 +9,11 @@ class Beer < ActiveRecord::Base
   validates :style, presence: true
 
   def average_rating
-    1.0 * ratings.inject(0.0){|summa,rating| summa + rating.score} /ratings.size
+    if ratings.count == 0
+      return 0
+    end
+    summa  = 1.0 * ratings.inject(0.0){|summa,rating| summa + rating.score} /ratings.size
+    summa.round(2)
   end
 
   def to_s
@@ -18,6 +22,11 @@ class Beer < ActiveRecord::Base
 
   def sum_of_ratings
     ratings.inject(0.0){|summa,rating| summa + rating.score}
+  end
+
+  def self.top(n)
+    sorted_by_rating_in_desc_order = Beer.all.sort_by{ |b| -(b.average_rating||0) }
+    sorted_by_rating_in_desc_order.take(n)
   end
 
 end

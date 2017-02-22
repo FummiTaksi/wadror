@@ -3,24 +3,39 @@
 <h2>List of ratings</h2>
 
 <td>Number of ratings <%=@ratings.size%></td>
-<table class = "table table-hover" >
+<rb></rb>
+<h2>Best breweries</h2>
+<%= render 'list', objects: Brewery.all.top(3) %>
+<rb></rb>
+<h2>Best beers</h2>
+<%= render 'list', objects: Beer.all.top(3) %>
+<h2>Best styles</h2>
+<%= render 'list', objects: Style.all.top(3) %>
+<h2>Most active users</h2>
+<table class="table table-hover">
   <thead>
-   <tr>
-     <th> Beer</th>
-     <th> Score</th>
-     <th> User</th>
-   </tr>
+  <tr>
+    <th>Name</th>
+    <th>Favorite beer</th>
+    <th>Favorite brewery</th>
+    <th>Preferred style</th>
+    <th> Ratings</th>
+  </tr>
   </thead>
-<tbody>
-  <% @ratings.each do |rating| %>
-       <tr>
-         <td> <%=link_to rating.beer, rating.beer%></td>
-         <td>  <%=rating.score %></td>
-         <td>  <%= link_to rating.user,rating.user %></td>
-       </tr>
+
+  <tbody>
+  <%User.all.top(3).each do |user| %>
+      <tr>
+        <td><%= link_to user, user %></td>
+        <td><%= user.favorite_beer %></td>
+        <td><%= user.favorite_brewery %></td>
+        <td><%= user.favorite_style %></td>
+        <td><%= user.ratings.count%></td>
+      </tr>
   <% end %>
-</tbody>
+  </tbody>
 </table>
+
 <rb>
 <%= link_to 'New rating',new_rating_path, class:'btn btn-primary'%>
 </rb>
