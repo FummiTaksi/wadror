@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   resources :styles
-  resources :users
+  resources :users do
+    post 'toggle_blocked', on: :member
+  end
   resources :beers
-  resources :breweries
+  resources :breweries do
+    post 'toggle_activity', on: :member
+  end
   resources :beer_clubs
 
   resources :ratings, only: [:index, :new, :create, :destroy]

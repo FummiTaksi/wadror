@@ -35,10 +35,13 @@ class Brewery < ActiveRecord::Base
       errors.add(:year_must_be_between_1042_and_present,",try again plz :)")
     end
   end
+
   def self.top(n)
     sorted_by_rating_in_desc_order = Brewery.all.sort_by{ |b| -(b.average_rating||0) }
     sorted_by_rating_in_desc_order.take(n)
   end
+
+
 
   def to_s
     "#{name}, founded at #{year}"

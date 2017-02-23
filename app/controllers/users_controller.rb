@@ -21,10 +21,19 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def toggle_blocked
+    user = User.find(params[:id])
+    user.update_attribute :blocked, (not user.blocked)
+    new_status = user.blocked ? "Frozen" : "Unfrozen :D"
+    redirect_to :back, notice: "This users status changed to #{new_status}"
+  end
+
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.blocked = false;
+    @user.admin = false;
 
     respond_to do |format|
       if @user.save

@@ -1,14 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h2>
   <%= @style.name %>
-</p>
+</h2>
 
-<p>
-  <strong>Description:</strong>
+<quote>
   <%= @style.description %>
-</p>
-
-<%= link_to 'Edit', edit_style_path(@style) %> |
-<%= link_to 'Back', styles_path %>
+</quote>
+<br>
+<%= edit_and_destroy_buttons(@style) %>
