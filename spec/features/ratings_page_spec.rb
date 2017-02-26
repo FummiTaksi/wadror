@@ -33,10 +33,10 @@ describe "Rating" do
     expect(page).to have_content 'Number of ratings 2'
   end
 
-  it "shows ratings information" do
+  it "shows most active user" do
     FactoryGirl.create(:rating,beer: beer1,user: user,score: 7)
     visit ratings_path
-    expect(page).to have_content 'iso 3 7 Pekka'
+    expect(page).to have_content 'Pekka'
   end
 
 

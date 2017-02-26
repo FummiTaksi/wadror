@@ -29,7 +29,7 @@ class BreweriesController < ApplicationController
   # POST /breweries.json
   def create
     @brewery = Brewery.new(brewery_params)
-
+    @brewery.update_attribute :active, true
     respond_to do |format|
       if @brewery.save
         format.html { redirect_to @brewery, notice: 'Brewery was successfully created.' }
@@ -46,6 +46,7 @@ class BreweriesController < ApplicationController
   def update
     respond_to do |format|
       if @brewery.update(brewery_params)
+
         format.html { redirect_to @brewery, notice: 'Brewery was successfully updated.' }
         format.json { render :show, status: :ok, location: @brewery }
       else
