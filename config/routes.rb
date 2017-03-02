@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get 'places', to: 'places#index'
   get 'places/:id', to:'places#show'
   get 'styles', to: 'styles#index'
+  get 'beerlist', to:'beers#list'
+  get 'brewerylist', to:'breweries#list'
 
   delete 'signout',to: 'sessions#destroy'
   post 'ratings', to: 'ratings#create'
