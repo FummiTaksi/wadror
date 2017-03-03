@@ -54,8 +54,11 @@ $(document).ready(function () {
             e.preventDefault();
         });
 
+        console.log("TESTI1")
 
         $.getJSON('beers.json', function (beers) {
+            console.log("TESTI")
+            window.koe = beers;
             BEERS.list = beers;
             BEERS.sort_by_name;
             BEERS.show();
